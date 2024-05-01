@@ -1,8 +1,11 @@
 package com.example.projecttester;
 
+import com.almasb.fxgl.entity.action.Action;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,15 +14,23 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class HelloController {
+public class HelloController implements Initializable {
     @FXML
     private Label welcomeText;
     @FXML
     private Button startGame;
+
+    @FXML
+    private AnchorPane pane;
 
     private Stage stage;
     private Scene scene;
@@ -48,9 +59,13 @@ public class HelloController {
     @FXML
     private Button trainFly;
 
+    @FXML
+    private ImageView background;
 
     @FXML
-    private ImageView imageView1;
+    private ImageView duckHolder;
+
+
     public void startRace1 (ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("runScreen1.fxml"));
@@ -93,5 +108,10 @@ public class HelloController {
         stage.show();
     }
 
+    DraggableMaker draggableMaker = new DraggableMaker();
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        draggableMaker.makeDraggable(duckHolder, pane);
+    }
 }
