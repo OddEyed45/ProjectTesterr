@@ -3,7 +3,7 @@ package com.example.projecttester;
 import javafx.scene.*;
 import javafx.scene.layout.AnchorPane;
 
-import javax.swing.text.html.ImageView;
+import javafx.scene.image.ImageView;
 
 public class DraggableMaker
 {
@@ -27,11 +27,9 @@ public class DraggableMaker
         });
 
         node.setOnMouseReleased(mouseEvent -> {
-            System.out.println("released");
-            System.out.println(pane.getHeight());
             while (node.getLayoutY() + node.maxHeight(0) < pane.getHeight())
             {
-                node.setLayoutY(node.getLayoutY() + 1);
+                node.setLayoutY(node.getLayoutY() + .5);
             }
         });
 

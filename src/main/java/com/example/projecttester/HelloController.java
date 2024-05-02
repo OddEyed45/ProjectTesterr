@@ -1,6 +1,4 @@
 package com.example.projecttester;
-
-import com.almasb.fxgl.entity.action.Action;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
