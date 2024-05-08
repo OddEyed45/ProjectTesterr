@@ -8,16 +8,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -127,4 +130,44 @@ public class HelloController implements Initializable {
             duckHolder2.setImage(new Image("duck.png"));
         System.out.println(duckHolder2.getImage().equals(new Image("duck.png")));
     }
+
+
+    @FXML
+    private ImageView lemonadeClick;
+
+    @FXML
+    private TextArea displayMessage;
+
+    @FXML
+    private Button regLemonade;
+
+    @FXML
+    private Button panLemonade;
+
+    public void mouseClick (MouseEvent event)
+    {
+        displayMessage.setText("Welcome. You can buy regular lemonade or our special Panera lemonade");
+        regLemonade = new Button();
+        regLemonade.setLayoutX(430);
+        regLemonade.setLayoutY(331);
+        regLemonade.setPrefHeight(40);
+        regLemonade.setPrefWidth(60);
+        regLemonade.setText("Regular Lemonade");
+        regLemonade.setWrapText(true);
+        regLemonade.setFont(new Font(8));
+
+
+        panLemonade = new Button();
+        panLemonade.setLayoutX(501);
+        panLemonade.setLayoutY(331);
+        panLemonade.setPrefHeight(40);
+        panLemonade.setPrefWidth(60);
+        panLemonade.setText("Panera Lemonade");
+        panLemonade.setWrapText(true);
+        panLemonade.setFont(new Font(8));
+
+        pane.getChildren().add(regLemonade);
+        pane.getChildren().add(panLemonade);
+    }
+
 }
