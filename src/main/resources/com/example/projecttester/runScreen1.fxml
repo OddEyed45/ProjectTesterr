@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
@@ -7,12 +8,13 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../track.jpg" />
+            <Image url="@../../../FINALRACE1.jpg" />
          </image></ImageView>
-      <ImageView fitHeight="80.0" fitWidth="48.0" layoutX="8.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="duckHolder2" fitHeight="79.0" fitWidth="54.0" layoutX="2.0" layoutY="266.0" onDragDetected="#run" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../duck.png" />
+            <Image url="@../../../duck2.png" />
          </image>
       </ImageView>
+      <Button fx:id="runButton" layoutX="238.0" layoutY="44.0" mnemonicParsing="false" onAction="#run" text="Click" />
    </children>
 </AnchorPane>

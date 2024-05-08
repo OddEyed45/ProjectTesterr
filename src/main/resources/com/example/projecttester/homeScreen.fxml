@@ -8,7 +8,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../green-grass-and-blue-sky-background-vector.jpg" />
+            <Image url="@../../../FINALHOME.png" />
          </image>
       </ImageView>
       <Button fx:id="race1" layoutX="109.0" layoutY="21.0" mnemonicParsing="false" onAction="#startRace1" text="Race1" />
@@ -16,7 +16,7 @@
       <Button fx:id="race3" layoutX="109.0" layoutY="89.0" mnemonicParsing="false" onAction="#startRace3" text="Championship" />
       <Button fx:id="trainRun" layoutX="260.0" layoutY="21.0" mnemonicParsing="false" onAction="#startTrainingRun" text="Train running" />
       <Button fx:id="trainFly" layoutX="260.0" layoutY="55.0" mnemonicParsing="false" onAction="#startTrainingFly" text="Train flying" />
-      <ImageView fx:id="duckHolder" fitHeight="80.0" fitWidth="48.0" layoutX="126.0" layoutY="330.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="duckHolder" fitHeight="80.0" fitWidth="48.0" layoutX="124.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../duck.png" />
          </image>

@@ -1,6 +1,5 @@
 package com.example.projecttester;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,10 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -99,7 +98,7 @@ public class HelloController implements Initializable {
     }
     public void startTrainingFly (ActionEvent event) throws IOException
     {
-        root = FXMLLoader.load(getClass().getResource("trainScreen21.fxml"));
+        root = FXMLLoader.load(getClass().getResource("trainScreen2.fxml"));
         stage = (Stage) (((Node)(event.getSource())).getScene().getWindow());
         scene = new Scene(root);
         stage.setScene(scene);
@@ -111,5 +110,21 @@ public class HelloController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         draggableMaker.makeDraggable(duckHolder, pane);
+    }
+
+
+    @FXML
+    private ImageView duckHolder2;
+
+    @FXML
+    private Button runButton;
+
+    public void run(ActionEvent event)
+    {
+        if (duckHolder2.getImage().getUrl().contains("duck.png"))
+            duckHolder2.setImage(new Image("duck2.png"));
+        else
+            duckHolder2.setImage(new Image("duck.png"));
+        System.out.println(duckHolder2.getImage().equals(new Image("duck.png")));
     }
 }
