@@ -40,13 +40,25 @@ public class HelloController implements Initializable {
     @FXML
     private TextField nameTextField;
 
+    private double energyLevel;
+    private double runLevel;
+    private int coinNum;
+
+    @FXML
+    private Label coinShow;
+
+    private Parent homeRoot;
     public void onButtonClick (ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("homeScreen.fxml"));
+        homeRoot = root;
         stage = (Stage) (((Node)(event.getSource())).getScene().getWindow());
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        energyLevel = 0;
+        runLevel = 0;
+        coinNum = 0;
     }
 
     @FXML
@@ -65,7 +77,6 @@ public class HelloController implements Initializable {
 
     @FXML
     private ImageView duckHolder;
-
 
     public void startRace1 (ActionEvent event) throws IOException
     {
@@ -92,15 +103,24 @@ public class HelloController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void startTrainingRun (ActionEvent event) throws IOException
+    public void startTrainingFly (ActionEvent event) throws IOException
     {
-        root = FXMLLoader.load(getClass().getResource("trainScreen1.fxml"));
-        stage = (Stage) (((Node)(event.getSource())).getScene().getWindow());
-        scene = new Scene(root);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("trainScreen1.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        PreviousController controller = fxmlLoader.getController();
+        controller.setPrevScene(trainRun.getScene());
+
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+//        root = FXMLLoader.load(getClass().getResource("trainScreen1.fxml"));
+//        stage = (Stage) (((Node)(event.getSource())).getScene().getWindow());
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
     }
-    public void startTrainingFly (ActionEvent event) throws IOException
+    public void startTrainingRun (ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("trainScreen2.fxml"));
         stage = (Stage) (((Node)(event.getSource())).getScene().getWindow());
@@ -137,7 +157,7 @@ public class HelloController implements Initializable {
     private ImageView lemonadeClick;
 
     @FXML
-    private TextArea displayMessage;
+    private Label displayMessage;
 
     @FXML
     private Button regLemonade;
@@ -191,8 +211,6 @@ public class HelloController implements Initializable {
         lemonadeDrop.makeDraggable(lemonadeImage, pane);
         pane.getChildren().add(lemonadeImage);
     }
-
-
 
 
 }

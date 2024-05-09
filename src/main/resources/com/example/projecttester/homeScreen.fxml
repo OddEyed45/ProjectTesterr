@@ -12,16 +12,26 @@
          </image>
       </ImageView>
       <ImageView fx:id="lemonadeClick" fitHeight="200.0" fitWidth="200.0" layoutX="386.0" layoutY="199.0" onMouseClicked="#mouseClick" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="race1" layoutX="109.0" layoutY="21.0" mnemonicParsing="false" onAction="#startRace1" text="Race1" />
-      <Button fx:id="race2" layoutX="109.0" layoutY="55.0" mnemonicParsing="false" onAction="#startRace2" text="Race2" />
-      <Button fx:id="race3" layoutX="109.0" layoutY="89.0" mnemonicParsing="false" onAction="#startRace3" text="Championship" />
-      <Button fx:id="trainRun" layoutX="260.0" layoutY="21.0" mnemonicParsing="false" onAction="#startTrainingRun" text="Train running" />
-      <Button fx:id="trainFly" layoutX="260.0" layoutY="55.0" mnemonicParsing="false" onAction="#startTrainingFly" text="Train flying" />
+      <Button fx:id="race1" layoutX="250.0" layoutY="20.0" mnemonicParsing="false" onAction="#startRace1" text="Race1" />
+      <Button fx:id="race2" layoutX="250.0" layoutY="53.0" mnemonicParsing="false" onAction="#startRace2" text="Race2" />
+      <Button fx:id="race3" layoutX="254.0" layoutY="85.0" mnemonicParsing="false" onAction="#startRace3" text="Championship" />
+      <Button fx:id="trainFly" layoutX="321.0" layoutY="20.0" mnemonicParsing="false" onAction="#startTrainingFly" text="Train flying" />
+      <Button fx:id="trainRun" layoutX="321.0" layoutY="53.0" mnemonicParsing="false" onAction="#startTrainingRun" text="Train running" />
       <ImageView fx:id="duckHolder" fitHeight="80.0" fitWidth="48.0" layoutX="124.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../duck.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="displayMessage" layoutX="412.0" layoutY="134.0" prefHeight="61.0" prefWidth="164.0" text="Click the Lemonade Stand to buy Lemonade!" wrapText="true" />
+      <ProgressBar layoutX="24.0" layoutY="33.0" prefHeight="18.0" prefWidth="170.0" progress="0.0" />
+      <ProgressBar layoutX="24.0" layoutY="76.0" prefHeight="18.0" prefWidth="170.0" progress="0.0" />
+      <Label layoutX="24.0" layoutY="14.0" text="Running Level" />
+      <Label layoutX="24.0" layoutY="57.0" text="Energy Level" />
+      <ImageView fitHeight="50.0" fitWidth="48.0" layoutX="430.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="coinShow" contentDisplay="CENTER" layoutX="480.0" layoutY="25.0" prefHeight="40.0" prefWidth="99.0" text="Coins: 0" wrapText="true" />
+      <Label fx:id="displayMessage" alignment="CENTER" layoutX="386.0" layoutY="120.0" prefHeight="92.0" prefWidth="211.0" text="Click the Lemonade Stand to buy Lemonade!" wrapText="true" />
       </children>
 </AnchorPane>
