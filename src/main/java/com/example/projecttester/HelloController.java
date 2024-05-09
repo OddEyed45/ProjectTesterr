@@ -1,6 +1,8 @@
 package com.example.projecttester;
+
+import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,15 +11,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DragEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,28 +44,29 @@ public class HelloController implements Initializable {
     private Scene scene;
     private Parent root;
 
+    PreviousController controller;
     @FXML
     private TextField nameTextField;
 
-    private double energyLevel;
-    private double runLevel;
-    private int coinNum;
+    protected static double energyLevel = 0;
+    protected static double runLevel = 0;
+    protected static int coinNum = 0;
+
+    @FXML
+    protected static ProgressBar energyBar;
+    @FXML
+    protected static ProgressBar flyBar;
 
     @FXML
     private Label coinShow;
 
-    private Parent homeRoot;
     public void onButtonClick (ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("homeScreen.fxml"));
-        homeRoot = root;
         stage = (Stage) (((Node)(event.getSource())).getScene().getWindow());
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        energyLevel = 0;
-        runLevel = 0;
-        coinNum = 0;
     }
 
     @FXML
@@ -108,7 +116,7 @@ public class HelloController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("trainScreen1.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
-        PreviousController controller = fxmlLoader.getController();
+        controller = fxmlLoader.getController();
         controller.setPrevScene(trainRun.getScene());
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -120,6 +128,7 @@ public class HelloController implements Initializable {
 //        stage.setScene(scene);
 //        stage.show();
     }
+
     public void startTrainingRun (ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("trainScreen2.fxml"));
@@ -134,6 +143,8 @@ public class HelloController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         draggableMaker.makeDraggable(duckHolder, pane);
+//        controller = new PreviousController();
+//        controller.animateTrainingFly();
     }
 
 
@@ -181,7 +192,11 @@ public class HelloController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent)
             {
-                dropLemonade(new Image("regLem.png"), actionEvent);
+                if (coinNum >= 1)
+                {
+                    dropLemonade(new Image("regLem.png"), actionEvent);
+                    coinNum--;
+                }
             }
         });
         panLemonade = new Button();
@@ -195,7 +210,11 @@ public class HelloController implements Initializable {
         panLemonade.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                dropLemonade(new Image("panLem.png"), actionEvent);
+                if (coinNum >= 5)
+                {
+                    dropLemonade(new Image("panLem.png"), actionEvent);
+                    coinNum -= 5;
+                }
             }
         });
         pane.getChildren().add(regLemonade);
@@ -207,8 +226,12 @@ public class HelloController implements Initializable {
         ImageView lemonadeImage = new ImageView(lemonade);
         lemonadeImage.setFitHeight(lemonadeImage.prefHeight(0) / 10);
         lemonadeImage.setFitWidth(lemonadeImage.prefWidth(0) / 10);
+        lemonadeImage.setLayoutX(duckHolder.getLayoutX() + 60);
+        lemonadeImage.setLayoutY(pane.getHeight() * .85);
+
         DraggableMaker lemonadeDrop = new DraggableMaker();
         lemonadeDrop.makeDraggable(lemonadeImage, pane);
+        lemonadeDrop.collectCoins(duckHolder, lemonadeImage, pane);
         pane.getChildren().add(lemonadeImage);
     }
 

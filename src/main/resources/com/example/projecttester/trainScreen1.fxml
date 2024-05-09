@@ -6,11 +6,37 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projecttester.PreviousController">
    <children>
-      <ImageView fitHeight="403.0" fitWidth="601.0" layoutX="-1.0" layoutY="-3.0" pickOnBounds="true">
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+         <Image url="@../../../FINALFLYTRAINING.jpg" />
+      </ImageView>
+      <ImageView fx:id="trainFlyDuck" fitHeight="54.0" fitWidth="96.0" layoutX="130.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../duckFlyUp.png" />
+      </ImageView>
+      <ImageView fx:id="trainFlyDuck2" fitHeight="54.0" fitWidth="96.0" layoutX="130.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../duckFlyDown.png" />
+      </ImageView>
+      <ImageView fx:id="trainAirplane2" fitHeight="77.0" fitWidth="102.0" layoutX="385.0" layoutY="110.0" pickOnBounds="true">
+         <Image url="@../../../airplane.jpg" />
+      </ImageView>
+      <ImageView fx:id="trainAirplane3" fitHeight="77.0" fitWidth="102.0" layoutX="474.0" layoutY="200.0" pickOnBounds="true">
+         <Image url="@../../../airplane.jpg" />
+      </ImageView>
+      <ImageView fx:id="trainAirplane4" fitHeight="77.0" fitWidth="102.0" layoutX="357.0" layoutY="246.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../FINALFLYTRAINING.jpg" />
-         </image></ImageView>
-      <Button fx:id="testB" layoutX="150.0" layoutY="125.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="toHome" layoutX="292.0" layoutY="125.0" mnemonicParsing="false" onAction="#toHome" text="Button" />
+            <Image url="@../../../airplane.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="trainAirplane" fitHeight="77.0" fitWidth="102.0" layoutX="449.0" layoutY="21.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../airplane.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="trainAirplane5" fitHeight="77.0" fitWidth="102.0" layoutX="459.0" layoutY="309.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../airplane.jpg" />
+         </image>
+      </ImageView>
+      <Button layoutX="40.0" layoutY="21.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="homeButton" layoutX="130.0" layoutY="21.0" mnemonicParsing="false" onAction="#toHome" text="Button" />
    </children>
 </AnchorPane>
