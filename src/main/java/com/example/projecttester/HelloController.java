@@ -1,5 +1,6 @@
 package com.example.projecttester;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -144,6 +145,7 @@ public class HelloController implements Initializable {
     @FXML
     private Button panLemonade;
 
+
     public void mouseClick (MouseEvent event)
     {
         displayMessage.setText("Welcome. You can buy regular lemonade or our special Panera lemonade");
@@ -155,8 +157,13 @@ public class HelloController implements Initializable {
         regLemonade.setText("Regular Lemonade");
         regLemonade.setWrapText(true);
         regLemonade.setFont(new Font(8));
-
-
+        regLemonade.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent)
+            {
+                dropLemonade(new Image("regLem.png"), actionEvent);
+            }
+        });
         panLemonade = new Button();
         panLemonade.setLayoutX(501);
         panLemonade.setLayoutY(331);
@@ -165,9 +172,27 @@ public class HelloController implements Initializable {
         panLemonade.setText("Panera Lemonade");
         panLemonade.setWrapText(true);
         panLemonade.setFont(new Font(8));
-
+        panLemonade.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                dropLemonade(new Image("panLem.png"), actionEvent);
+            }
+        });
         pane.getChildren().add(regLemonade);
         pane.getChildren().add(panLemonade);
     }
+
+    public void dropLemonade(Image lemonade, ActionEvent actionEvent)
+    {
+        ImageView lemonadeImage = new ImageView(lemonade);
+        lemonadeImage.setFitHeight(lemonadeImage.prefHeight(0) / 10);
+        lemonadeImage.setFitWidth(lemonadeImage.prefWidth(0) / 10);
+        DraggableMaker lemonadeDrop = new DraggableMaker();
+        lemonadeDrop.makeDraggable(lemonadeImage, pane);
+        pane.getChildren().add(lemonadeImage);
+    }
+
+
+
 
 }
