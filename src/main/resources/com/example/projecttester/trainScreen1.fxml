@@ -15,8 +15,7 @@
       <ImageView fx:id="trainFlyDuck2" fitHeight="54.0" fitWidth="96.0" layoutX="130.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../../../duckFlyDown.png" />
       </ImageView>
-      <Button layoutX="40.0" layoutY="21.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="homeButton" layoutX="130.0" layoutY="21.0" mnemonicParsing="false" onAction="#toHome" text="Button" />
+      <Button fx:id="homeButton" layoutX="130.0" layoutY="21.0" mnemonicParsing="false" onAction="#toHome" text="Exit" />
       <ImageView fx:id="trainAirplane" fitHeight="82.0" fitWidth="96.0" layoutX="412.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../airplane.png" />
@@ -42,5 +41,6 @@
             <Image url="@../../../airplane.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="trainingOver" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

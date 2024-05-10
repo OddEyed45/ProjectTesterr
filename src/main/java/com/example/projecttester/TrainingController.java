@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
@@ -108,6 +109,48 @@ public class TrainingController implements Initializable
 
     }
 
+
+    @FXML
+    private ImageView trainingOver;
+    @FXML
+    private Button TrainAgain;
+
+    public void gameOverOnTouch(){
+        if (trainingOver != null){
+            trainingOver.setVisible(false);
+        }
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+            checkIntersect(trainFlyDuck, trainAirplane);
+            checkIntersect(trainFlyDuck, trainAirplane);
+            checkIntersect(trainFlyDuck2, trainAirplane);
+            checkIntersect(trainFlyDuck, trainAirplane2);
+            checkIntersect(trainFlyDuck2, trainAirplane2);
+            checkIntersect(trainFlyDuck, trainAirplane3);
+            checkIntersect(trainFlyDuck2, trainAirplane3);
+            checkIntersect(trainFlyDuck, trainAirplane4);
+            checkIntersect(trainFlyDuck2, trainAirplane4);
+            checkIntersect(trainFlyDuck, trainAirplane5);
+            checkIntersect(trainFlyDuck2, trainAirplane5);
+        })
+        );
+
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    public void checkIntersect(ImageView theDuck, ImageView plane)
+    {
+        if (theDuck.getBoundsInParent().intersects(plane.getBoundsInParent()))
+        {
+            for (Node n : pane.getChildren())
+                n.setVisible(false);
+            trainingOver = new ImageView(new Image("trainingOver.jpg"));
+            trainingOver.setVisible(true);
+            trainFlyDuck.setOpacity(0);
+            trainFlyDuck2.setOpacity(0);
+        }
+    }
 
     public void moveAirplane(ImageView airplane, double ogX)
     {
