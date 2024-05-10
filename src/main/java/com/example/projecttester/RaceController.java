@@ -53,7 +53,7 @@ public class RaceController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-
+        gameOverOnTouch();
     }
 
     public void raceDucks()
@@ -171,6 +171,30 @@ public class RaceController implements Initializable
         }
     }
 
+        public void gameOverOnTouch(){
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+            checkIntersect(thisDuckUp, raceLine);
+            checkIntersect(thisDuckDown, raceLine);
+            checkIntersect(anotherDuckUp, raceLine);
+            checkIntersect(anotherDuckDown, raceLine);
+        })
+        );
+
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    public void checkIntersect(ImageView theDuck, ImageView raceLine) {
+        if (theDuck != null) {
+            if (theDuck.getBoundsInParent().intersects(raceLine.getBoundsInParent())) {
+                //add whatever pops up when race is over
+                System.out.print("finished");
+            }
+        }
+    }
+
+
     public void toHome(ActionEvent event)
     {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -178,6 +202,7 @@ public class RaceController implements Initializable
         HelloController.coinNum += 20;
         stage.show();
     }
+    
 
 
 }
