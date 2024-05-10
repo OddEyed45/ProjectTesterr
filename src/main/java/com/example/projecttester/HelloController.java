@@ -1,7 +1,5 @@
 package com.example.projecttester;
 
-import javafx.animation.PauseTransition;
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,14 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import javafx.animation.Timeline;
-import javafx.animation.KeyFrame;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -28,10 +21,7 @@ import javafx.scene.text.Font;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class HelloController implements Initializable
 {
@@ -47,7 +37,6 @@ public class HelloController implements Initializable
     private Scene scene;
     private Parent root;
 
-    PreviousController controller;
     @FXML
     private TextField nameTextField;
 
@@ -62,7 +51,6 @@ public class HelloController implements Initializable
 
     @FXML
     protected Label coinShow;
-
     public void onButtonClick (ActionEvent event) throws IOException
     {
         root = FXMLLoader.load(getClass().getResource("homeScreen.fxml"));
@@ -75,11 +63,8 @@ public class HelloController implements Initializable
     @FXML
     private Button race1;
     @FXML
-    private Button race2;
-    @FXML
-    private Button race3;
-    @FXML
     private Button trainFly;
+
 
     @FXML
     private ImageView background;
@@ -87,31 +72,22 @@ public class HelloController implements Initializable
     @FXML
     private ImageView duckHolder;
 
+    TrainingController controller;
+    RaceController controller1;
+
     public void startRace1 (ActionEvent event) throws IOException
     {
-        root = FXMLLoader.load(getClass().getResource("runScreen1.fxml"));
-        stage = (Stage) (((Node)(event.getSource())).getScene().getWindow());
-        scene = new Scene(root);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("runScreen1.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        controller1 = fxmlLoader.getController();
+        controller1.setPrevScene(race1.getScene(), energyBar.getProgress(), flyBar.getProgress());
+
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
 
-    public void startRace2 (ActionEvent event) throws IOException
-    {
-        root = FXMLLoader.load(getClass().getResource("runScreen2.fxml"));
-        stage = (Stage) (((Node)(event.getSource())).getScene().getWindow());
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    public void startRace3 (ActionEvent event) throws IOException
-    {
-        root = FXMLLoader.load(getClass().getResource("runScreen3.fxml"));
-        stage = (Stage) (((Node)(event.getSource())).getScene().getWindow());
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
     public void startTrainingFly (ActionEvent event) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("trainScreen1.fxml"));
@@ -123,17 +99,9 @@ public class HelloController implements Initializable
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         coinShow.setText("Coins: " + (coinNum + 20));
-        flyLevel += 20;
-        flyBar.setProgress(20.0 / 50);
-        stage.show();
-    }
-
-    public void startTrainingRun (ActionEvent event) throws IOException
-    {
-        root = FXMLLoader.load(getClass().getResource("trainScreen2.fxml"));
-        stage = (Stage) (((Node)(event.getSource())).getScene().getWindow());
-        scene = new Scene(root);
-        stage.setScene(scene);
+        flyLevel += 10;
+        if (flyBar.getProgress() + (10.0 / 50) <= 1)
+            flyBar.setProgress(flyBar.getProgress() + (10.0 / 50));
         stage.show();
     }
 
@@ -144,27 +112,6 @@ public class HelloController implements Initializable
     {
         draggableMaker.makeDraggable(duckHolder, pane);
     }
-
-
-    @FXML
-    private ImageView duckHolder2;
-
-    @FXML
-    private Button runButton;
-
-    public void run(ActionEvent event)
-    {
-        if (duckHolder2.getImage().getUrl().contains("duck.png"))
-            duckHolder2.setImage(new Image("duck2.png"));
-        else
-            duckHolder2.setImage(new Image("duck.png"));
-        System.out.println(duckHolder2.getImage().equals(new Image("duck.png")));
-    }
-
-
-    @FXML
-    private ImageView lemonadeClick;
-
     @FXML
     private Label displayMessage;
 
@@ -235,22 +182,28 @@ public class HelloController implements Initializable
         lemonadeDrop.collectCoins(duckHolder, lemonadeImage, pane);
         pane.getChildren().add(lemonadeImage);
 
-        List<Node> copy = new ArrayList<>(pane.getChildren());
+        Set<Node> copy = new HashSet<>(pane.getChildren());
         duckHolder.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
+                System.out.println(pane.getChildren().size() + " " + copy.size());
                 if (pane.getChildren().size() < copy.size()) {
+
                     List<Node> copy2 = new ArrayList<>(pane.getChildren());
                     copy.removeAll(copy2);
-                    if (((ImageView) (copy.getFirst())).getImage().getUrl().contains("panLem"))
+
+                    if (((ImageView) (copy.toArray()[0])).getImage().getUrl().contains("panLem"))
                         energyLevel += 3;
                     else
                         energyLevel++;
+                    copy.removeAll(copy);
+                    copy.addAll(pane.getChildren());
                 }
                 energyBar.setProgress(energyLevel / 50.0);
-
+                System.out.println(energyLevel);
             }
         });
+
 
 
     }

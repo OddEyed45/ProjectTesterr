@@ -17,19 +17,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PreviousController implements Initializable
+public class TrainingController implements Initializable
 {
     @FXML
     private AnchorPane pane;
 
-    @FXML
-    private Button homeButton;
 
     private Scene homeScene;
+    private Scene thisScene;
 
     public void setPrevScene (Scene scene)
     {
@@ -78,7 +76,6 @@ public class PreviousController implements Initializable
         cycleAirplanes();
         makeDuckFly();
         makeDuckMoveable();
-        //gameOverOnTouch();
     }
 
     public void cycleAirplanes()
@@ -110,22 +107,6 @@ public class PreviousController implements Initializable
 
 
     }
-
-//    public void moveAirplane(ImageView airplane, Double ogX) {
-//        Timeline tl = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
-//            if (airplane != null) {
-//                airplane.setX(ogX);
-//                airplane.setVisible(true);
-//                TranslateTransition translate = new TranslateTransition();
-//                translate.setNode(airplane);
-//                translate.setDuration(Duration.seconds(6));
-//                translate.setByX(-1500);
-//                translate.play();
-//            }
-//        })
-//        );
-//        tl.play();
-//    }
 
 
     public void moveAirplane(ImageView airplane, double ogX)
@@ -191,10 +172,8 @@ public class PreviousController implements Initializable
         pause.play();
     }
 
-    public void makeDuckMoveable(){
-        double moveSpeed = 2;
-        final double[] imageY = {148};
-
+    public void makeDuckMoveable()
+    {
         if (trainFlyDuck != null){
             trainFlyDuck.setFocusTraversable(true);
             trainFlyDuck.setOnKeyPressed(event -> {

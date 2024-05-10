@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projecttester.HelloController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projecttester.RaceController">
    <children>
+
+
+
       <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="-1.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../FINALRACE1.jpg" />
+            <Image url="@../../../FINALRACE2.jpg" />
          </image></ImageView>
-      <ImageView fx:id="duckHolder2" fitHeight="79.0" fitWidth="54.0" layoutX="2.0" layoutY="266.0" onDragDetected="#run" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="anotherDuckUp" fitHeight="54.0" fitWidth="96.0" layoutX="50.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../anotherDuckFlyUp.png" />
+      </ImageView>
+      <ImageView fx:id="anotherDuckDown" fitHeight="54.0" fitWidth="96.0" layoutX="50.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../anotherDuckFlyDown.png" />
+      </ImageView>
+      <ImageView fx:id="thisDuckUp" fitHeight="54.0" fitWidth="96.0" layoutX="50.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../duckFlyUp.png" />
+      </ImageView>
+      <ImageView fx:id="thisDuckDown" fitHeight="54.0" fitWidth="96.0" layoutX="50.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+         <Image url="@../../../duckFlyDown.png" />
+      </ImageView>
+
+      <Button fx:id="flyRaceButton" layoutX="124.0" layoutY="43.0" mnemonicParsing="false" onAction="#raceDucks" text="Click to start race" />
+      <Button fx:id="exitRaceButton" layoutX="274.0" layoutY="43.0" mnemonicParsing="false" onAction="#toHome" text="Exit" />
+      <ImageView fitHeight="400.0" fitWidth="61.0" layoutX="530.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../duck2.png" />
+            <Image url="@../../../raceLine.png" />
          </image>
       </ImageView>
-      <Button fx:id="runButton" layoutX="238.0" layoutY="44.0" mnemonicParsing="false" onAction="#run" text="Click" />
    </children>
 </AnchorPane>
