@@ -28,7 +28,7 @@
 
       <Button fx:id="flyRaceButton" layoutX="124.0" layoutY="43.0" mnemonicParsing="false" onAction="#raceDucks" text="Click to start race" />
       <Button fx:id="exitRaceButton" layoutX="274.0" layoutY="43.0" mnemonicParsing="false" onAction="#toHome" text="Exit" />
-      <ImageView fitHeight="400.0" fitWidth="61.0" layoutX="530.0" pickOnBounds="true">
+      <ImageView fx:id="raceLine" fitHeight="400.0" fitWidth="61.0" layoutX="530.0" pickOnBounds="true">
          <image>
             <Image url="@../../../raceLine.png" />
          </image>
