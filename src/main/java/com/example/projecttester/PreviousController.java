@@ -1,24 +1,31 @@
 package com.example.projecttester;
 
-import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class PreviousController implements Initializable
@@ -66,19 +73,52 @@ public class PreviousController implements Initializable
     private ImageView trainFlyDuck;
     @FXML
     private ImageView trainFlyDuck2;
+    public ImageView trainingOver;
+    public Button TrainAgain;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         animateTrainingFly();
     }
+    public void gameOverOnTouch(){
+        if (trainingOver != null){
+            trainingOver.setVisible(false);
+        }
 
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+            checkIntersect(trainFlyDuck, trainAirplane);
+            checkIntersect(trainFlyDuck, trainAirplane);
+            checkIntersect(trainFlyDuck2, trainAirplane);
+            checkIntersect(trainFlyDuck, trainAirplane2);
+            checkIntersect(trainFlyDuck2, trainAirplane2);
+            checkIntersect(trainFlyDuck, trainAirplane3);
+            checkIntersect(trainFlyDuck2, trainAirplane3);
+            checkIntersect(trainFlyDuck, trainAirplane4);
+            checkIntersect(trainFlyDuck2, trainAirplane4);
+            checkIntersect(trainFlyDuck, trainAirplane5);
+            checkIntersect(trainFlyDuck2, trainAirplane5);
+        })
+        );
+
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    public void checkIntersect(ImageView theDuck, ImageView plane) {
+        if (theDuck.getBoundsInParent().intersects(plane.getBoundsInParent())) {
+            trainingOver.setVisible(true);
+            trainFlyDuck.setOpacity(0);
+            trainFlyDuck2.setOpacity(0);
+        }
+    }
+    
     public void animateTrainingFly()
     {
         cycleAirplanes();
         makeDuckFly();
         makeDuckMoveable();
-        //gameOverOnTouch();
+        gameOverOnTouch();
     }
 
     public void cycleAirplanes()
@@ -110,22 +150,6 @@ public class PreviousController implements Initializable
 
 
     }
-
-//    public void moveAirplane(ImageView airplane, Double ogX) {
-//        Timeline tl = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
-//            if (airplane != null) {
-//                airplane.setX(ogX);
-//                airplane.setVisible(true);
-//                TranslateTransition translate = new TranslateTransition();
-//                translate.setNode(airplane);
-//                translate.setDuration(Duration.seconds(6));
-//                translate.setByX(-1500);
-//                translate.play();
-//            }
-//        })
-//        );
-//        tl.play();
-//    }
 
 
     public void moveAirplane(ImageView airplane, double ogX)
@@ -229,10 +253,6 @@ public class PreviousController implements Initializable
                 }
             });
         }
-
-        //public void gameOverOnTouch(){
-
-        // }
     }
 
 
