@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -115,25 +116,32 @@ public class TrainingController implements Initializable
     @FXML
     private Button TrainAgain;
 
-    public void gameOverOnTouch(){
-        if (trainingOver != null){
+    public void gameOverOnTouch()
+    {
+        if (trainingOver != null)
+        {
             trainingOver.setVisible(false);
         }
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
-            checkIntersect(trainFlyDuck, trainAirplane);
-            checkIntersect(trainFlyDuck, trainAirplane);
-            checkIntersect(trainFlyDuck2, trainAirplane);
-            checkIntersect(trainFlyDuck, trainAirplane2);
-            checkIntersect(trainFlyDuck2, trainAirplane2);
-            checkIntersect(trainFlyDuck, trainAirplane3);
-            checkIntersect(trainFlyDuck2, trainAirplane3);
-            checkIntersect(trainFlyDuck, trainAirplane4);
-            checkIntersect(trainFlyDuck2, trainAirplane4);
-            checkIntersect(trainFlyDuck, trainAirplane5);
-            checkIntersect(trainFlyDuck2, trainAirplane5);
-        })
-        );
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1),
+                new EventHandler<ActionEvent>()
+                {
+                    @Override
+                    public void handle(ActionEvent actionEvent)
+                    {
+                        checkIntersect(trainFlyDuck, trainAirplane);
+                        checkIntersect(trainFlyDuck, trainAirplane);
+                        checkIntersect(trainFlyDuck2, trainAirplane);
+                        checkIntersect(trainFlyDuck, trainAirplane2);
+                        checkIntersect(trainFlyDuck2, trainAirplane2);
+                        checkIntersect(trainFlyDuck, trainAirplane3);
+                        checkIntersect(trainFlyDuck2, trainAirplane3);
+                        checkIntersect(trainFlyDuck, trainAirplane4);
+                        checkIntersect(trainFlyDuck2, trainAirplane4);
+                        checkIntersect(trainFlyDuck, trainAirplane5);
+                        checkIntersect(trainFlyDuck2, trainAirplane5);
+                    }
+                }));
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -152,28 +160,32 @@ public class TrainingController implements Initializable
         }
     }
 
-    public void moveAirplane(ImageView airplane, double ogX)
-    {
+    public void moveAirplane(ImageView airplane, double ogX) {
         Timeline tl = new Timeline(
-            new KeyFrame(Duration.seconds(6), event -> {
-            if (airplane != null)
-            {
-                airplane.setVisible(true);
-                airplane.setX((int)(Math.random() * (300)) + 500);
-                TranslateTransition translate = new TranslateTransition();
-                translate.setNode(airplane);
-                translate.setDuration(Duration.seconds(8));
-                translate.setFromX(100);
-                translate.setToX(-2000);
-                translate.play();
-                translate.setOnFinished(new EventHandler<ActionEvent>() {
+                new KeyFrame(Duration.seconds(6), new EventHandler<ActionEvent>()
+                {
                     @Override
-                    public void handle(ActionEvent actionEvent) {
-                        airplane.setX((int)(Math.random() * (100)) + 900);
+                    public void handle(ActionEvent actionEvent)
+                    {
+                        if (airplane != null) {
+                            airplane.setVisible(true);
+                            airplane.setX((int) (Math.random() * (300)) + 500);
+                            TranslateTransition translate = new TranslateTransition();
+                            translate.setNode(airplane);
+                            translate.setDuration(Duration.seconds(8));
+                            translate.setFromX(100);
+                            translate.setToX(-2000);
+                            translate.play();
+                            translate.setOnFinished(new EventHandler<ActionEvent>()
+                            {
+                                @Override
+                                public void handle(ActionEvent actionEvent) {
+                                    airplane.setX((int) (Math.random() * (100)) + 900);
+                                }
+                            });
+                        }
                     }
-                });
-            }})
-        );
+                }));
         tl.setCycleCount(Timeline.INDEFINITE);
         tl.play();
     }
@@ -186,27 +198,42 @@ public class TrainingController implements Initializable
         }
 
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3), event -> {
-            if (trainFlyDuck != null && trainFlyDuck2 != null){
-                trainFlyDuck.setVisible(false);
-                trainFlyDuck2.setVisible(true);
-            }
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.3),
+                new EventHandler<ActionEvent>()
+                {
+                    @Override
+                    public void handle(ActionEvent actionEvent)
+                    {
+                        if (trainFlyDuck != null && trainFlyDuck2 != null) {
+                            trainFlyDuck.setVisible(false);
+                            trainFlyDuck2.setVisible(true);
+                        }
+                    }
+                }));
 
-        }));
 
-
-        Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.6), event -> {
-
-            if (trainFlyDuck != null && trainFlyDuck2 != null) {
-                trainFlyDuck.setVisible(true);
-                trainFlyDuck2.setVisible(false);
-            }
-        }));
+        Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(0.6),
+                new EventHandler<ActionEvent>()
+                {
+                    @Override
+                    public void handle(ActionEvent event)
+                    {
+                        if (trainFlyDuck != null && trainFlyDuck2 != null) {
+                            trainFlyDuck.setVisible(true);
+                            trainFlyDuck2.setVisible(false);
+                        }
+                    }
+                }));
 
         PauseTransition pause = new PauseTransition(Duration.seconds(0.3));
 
-        pause.setOnFinished(event -> {
-            timeline2.play();
+        pause.setOnFinished(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                timeline2.play();
+            }
         });
 
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -217,44 +244,48 @@ public class TrainingController implements Initializable
 
     public void makeDuckMoveable()
     {
-        if (trainFlyDuck != null){
+        if (trainFlyDuck != null)
+        {
             trainFlyDuck.setFocusTraversable(true);
-            trainFlyDuck.setOnKeyPressed(event -> {
-                KeyCode code = event.getCode();
-                switch (code) {
-                    case UP:
-                        TranslateTransition translateUp = new TranslateTransition();
-                        translateUp.setByY(-60);
-                        translateUp.setNode(trainFlyDuck);
+            trainFlyDuck.setOnKeyPressed(new EventHandler<KeyEvent>()
+            {
+                @Override
+                public void handle(KeyEvent event)
+                {
+                    KeyCode code = event.getCode();
+                    switch (code)
+                    {
+                        case UP:
+                            TranslateTransition translateUp = new TranslateTransition();
+                            translateUp.setByY(-60);
+                            translateUp.setNode(trainFlyDuck);
 
-                        TranslateTransition translateUp2 = new TranslateTransition();
-                        translateUp2.setByY(-60);
-                        translateUp2.setNode(trainFlyDuck2);
+                            TranslateTransition translateUp2 = new TranslateTransition();
+                            translateUp2.setByY(-60);
+                            translateUp2.setNode(trainFlyDuck2);
 
-                        translateUp.play();
-                        translateUp2.play();
-                        break;
-                    case DOWN:
-                        TranslateTransition translateDown = new TranslateTransition();
-                        translateDown.setByY(60);
-                        translateDown.setNode(trainFlyDuck);
+                            translateUp.play();
+                            translateUp2.play();
+                            break;
+                        case DOWN:
+                            TranslateTransition translateDown = new TranslateTransition();
+                            translateDown.setByY(60);
+                            translateDown.setNode(trainFlyDuck);
 
-                        TranslateTransition translateDown2 = new TranslateTransition();
-                        translateDown2.setByY(60);
-                        translateDown2.setNode(trainFlyDuck2);
+                            TranslateTransition translateDown2 = new TranslateTransition();
+                            translateDown2.setByY(60);
+                            translateDown2.setNode(trainFlyDuck2);
 
-                        translateDown.play();
-                        translateDown2.play();
-                        break;
-                    default:
-                        break;
+                            translateDown.play();
+                            translateDown2.play();
+                            break;
+                        default:
+                            break;
+                    }
                 }
             });
         }
 
-        //public void gameOverOnTouch(){
-
-        // }
     }
 
 
