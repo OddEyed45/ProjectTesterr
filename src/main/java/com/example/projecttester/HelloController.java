@@ -31,7 +31,8 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class HelloController implements Initializable {
+public class HelloController implements Initializable
+{
     @FXML
     private Label welcomeText;
     @FXML
@@ -76,8 +77,6 @@ public class HelloController implements Initializable {
     @FXML
     private Button race3;
     @FXML
-    private Button trainRun;
-    @FXML
     private Button trainFly;
 
     @FXML
@@ -117,7 +116,7 @@ public class HelloController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load());
 
         controller = fxmlLoader.getController();
-        controller.setPrevScene(trainRun.getScene());
+        controller.setPrevScene(trainFly.getScene());
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -141,10 +140,9 @@ public class HelloController implements Initializable {
     DraggableMaker draggableMaker = new DraggableMaker();
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
         draggableMaker.makeDraggable(duckHolder, pane);
-//        controller = new PreviousController();
-//        controller.animateTrainingFly();
     }
 
 

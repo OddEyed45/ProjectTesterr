@@ -17,7 +17,7 @@ public class HelloApplication extends Application
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Got Any Grapes?");
         stage.setScene(scene);
-        stage.setResizable(false);
+        //stage.setResizable(false);
         stage.show();
     }
 
