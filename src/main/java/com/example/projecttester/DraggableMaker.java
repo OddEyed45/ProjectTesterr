@@ -20,7 +20,8 @@ public class DraggableMaker
         if (node == null)
             return;
 
-        node.setOnMousePressed(new EventHandler<MouseEvent>() {
+        node.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 mouseAnchorX = mouseEvent.getX();
@@ -28,7 +29,8 @@ public class DraggableMaker
             }
         });
 
-        node.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        node.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getSceneX() - mouseAnchorX < .6 * pane.getPrefWidth() &&
@@ -40,7 +42,8 @@ public class DraggableMaker
             }
         });
 
-        node.setOnMouseReleased(new EventHandler<MouseEvent>() {
+        node.setOnMouseReleased(new EventHandler<MouseEvent>()
+        {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 while (node.getLayoutY() + node.maxHeight(0) < pane.getHeight() * .9)
@@ -54,7 +57,8 @@ public class DraggableMaker
 
     public void collectCoins (Node node1, ImageView node2, AnchorPane pane)
     {
-        node1.setOnMousePressed(new EventHandler<MouseEvent>() {
+        node1.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 mouseAnchorX = mouseEvent.getX();
@@ -62,7 +66,8 @@ public class DraggableMaker
             }
         });
 
-        node2.setOnMousePressed(new EventHandler<MouseEvent>() {
+        node2.setOnMousePressed(new EventHandler<MouseEvent>()
+        {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 mouseAnchorX2 = mouseEvent.getX();
@@ -70,7 +75,8 @@ public class DraggableMaker
             }
         });
 
-        node1.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        node1.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (mouseEvent.getSceneX() - mouseAnchorX < .6 * pane.getPrefWidth() &&
@@ -85,7 +91,8 @@ public class DraggableMaker
             }
         });
 
-        node2.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        node2.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
             @Override
             public void handle(MouseEvent mouseEvent)
             {

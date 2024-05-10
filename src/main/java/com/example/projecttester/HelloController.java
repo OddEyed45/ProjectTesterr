@@ -133,7 +133,8 @@ public class HelloController implements Initializable
         regLemonade.setText("Regular Lemonade");
         regLemonade.setWrapText(true);
         regLemonade.setFont(new Font(8));
-        regLemonade.setOnAction(new EventHandler<ActionEvent>() {
+        regLemonade.setOnAction(new EventHandler<ActionEvent>()
+        {
             @Override
             public void handle(ActionEvent actionEvent)
             {
@@ -153,9 +154,11 @@ public class HelloController implements Initializable
         panLemonade.setText("Panera Lemonade");
         panLemonade.setWrapText(true);
         panLemonade.setFont(new Font(8));
-        panLemonade.setOnAction(new EventHandler<ActionEvent>() {
+        panLemonade.setOnAction(new EventHandler<ActionEvent>()
+        {
             @Override
-            public void handle(ActionEvent actionEvent) {
+            public void handle(ActionEvent actionEvent)
+            {
                 if (coinNum >= 5)
                 {
                     dropLemonade(new Image("panLem.png"), actionEvent);
@@ -183,11 +186,14 @@ public class HelloController implements Initializable
         pane.getChildren().add(lemonadeImage);
 
         Set<Node> copy = new HashSet<>(pane.getChildren());
-        duckHolder.setOnMouseMoved(new EventHandler<MouseEvent>() {
+        duckHolder.setOnMouseMoved(new EventHandler<MouseEvent>()
+        {
             @Override
-            public void handle(MouseEvent mouseEvent) {
+            public void handle(MouseEvent mouseEvent)
+            {
                 System.out.println(pane.getChildren().size() + " " + copy.size());
-                if (pane.getChildren().size() < copy.size()) {
+                if (pane.getChildren().size() < copy.size())
+                {
 
                     List<Node> copy2 = new ArrayList<>(pane.getChildren());
                     copy.removeAll(copy2);
