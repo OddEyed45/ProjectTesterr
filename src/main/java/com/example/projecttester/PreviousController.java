@@ -41,7 +41,6 @@ public class PreviousController implements Initializable
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(homeScene);
         HelloController.coinNum += 20;
-        //HelloController.coinShow.setText("Coins: " + HelloController.coinNum);
         stage.show();
     }
 

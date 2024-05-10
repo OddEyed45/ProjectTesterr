@@ -97,19 +97,13 @@ public class DraggableMaker
                     node2.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY2);
 
 
-                if (!(node2.getLayoutX() + node2.prefWidth(0) < node1.getLayoutX()) &&
+                if (!(node2.getLayoutX() - (node2.prefWidth(0) * .5) < node1.getLayoutX()) &&
                         !(node2.getLayoutY() < node1.getLayoutY()) &&
-                        !(node1.getLayoutX() + node1.prefWidth(0) < node2.getLayoutX()) &&
+                        !(node1.getLayoutX() + (node1.prefWidth(0) * .5) < node2.getLayoutX()) &&
                         !(node1.getLayoutY() + node1.prefHeight(0) < node2.getLayoutY()))
                     if (pane.getChildren().contains(node2))
                     {
                         pane.getChildren().remove(node2);
-                        if (node2.getImage().getUrl().contains("panLem"))
-                        {
-                            HelloController.energyLevel += 5;
-                        }
-                        else
-                            HelloController.energyLevel += 1;
                     }
 
             }

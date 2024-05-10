@@ -28,6 +28,8 @@ import javafx.scene.text.Font;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -49,17 +51,17 @@ public class HelloController implements Initializable
     @FXML
     private TextField nameTextField;
 
-    protected static double energyLevel = 0;
-    protected static double runLevel = 0;
+    private double energyLevel = 0;
+    private double flyLevel = 0;
     protected static int coinNum = 0;
 
     @FXML
-    protected static ProgressBar energyBar;
+    private ProgressBar energyBar;
     @FXML
-    protected static ProgressBar flyBar;
+    private ProgressBar flyBar;
 
     @FXML
-    private Label coinShow;
+    protected Label coinShow;
 
     public void onButtonClick (ActionEvent event) throws IOException
     {
@@ -120,12 +122,10 @@ public class HelloController implements Initializable
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
+        coinShow.setText("Coins: " + (coinNum + 20));
+        flyLevel += 20;
+        flyBar.setProgress(20.0 / 50);
         stage.show();
-//        root = FXMLLoader.load(getClass().getResource("trainScreen1.fxml"));
-//        stage = (Stage) (((Node)(event.getSource())).getScene().getWindow());
-//        scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
     }
 
     public void startTrainingRun (ActionEvent event) throws IOException
@@ -194,6 +194,7 @@ public class HelloController implements Initializable
                 {
                     dropLemonade(new Image("regLem.png"), actionEvent);
                     coinNum--;
+                    coinShow.setText("Coins: " + coinNum);
                 }
             }
         });
@@ -212,6 +213,8 @@ public class HelloController implements Initializable
                 {
                     dropLemonade(new Image("panLem.png"), actionEvent);
                     coinNum -= 5;
+                    coinShow.setText("Coins: " + coinNum);
+
                 }
             }
         });
@@ -231,6 +234,25 @@ public class HelloController implements Initializable
         lemonadeDrop.makeDraggable(lemonadeImage, pane);
         lemonadeDrop.collectCoins(duckHolder, lemonadeImage, pane);
         pane.getChildren().add(lemonadeImage);
+
+        List<Node> copy = new ArrayList<>(pane.getChildren());
+        duckHolder.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (pane.getChildren().size() < copy.size()) {
+                    List<Node> copy2 = new ArrayList<>(pane.getChildren());
+                    copy.removeAll(copy2);
+                    if (((ImageView) (copy.getFirst())).getImage().getUrl().contains("panLem"))
+                        energyLevel += 3;
+                    else
+                        energyLevel++;
+                }
+                energyBar.setProgress(energyLevel / 50.0);
+
+            }
+        });
+
+
     }
 
 
