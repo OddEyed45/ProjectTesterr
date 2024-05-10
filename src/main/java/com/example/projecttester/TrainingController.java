@@ -116,47 +116,37 @@ public class TrainingController implements Initializable
     @FXML
     private Button TrainAgain;
 
-    public void gameOverOnTouch()
-    {
-        if (trainingOver != null)
-        {
+    public void gameOverOnTouch(){
+        if (trainingOver != null){
             trainingOver.setVisible(false);
         }
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1),
-                new EventHandler<ActionEvent>()
-                {
-                    @Override
-                    public void handle(ActionEvent actionEvent)
-                    {
-                        checkIntersect(trainFlyDuck, trainAirplane);
-                        checkIntersect(trainFlyDuck, trainAirplane);
-                        checkIntersect(trainFlyDuck2, trainAirplane);
-                        checkIntersect(trainFlyDuck, trainAirplane2);
-                        checkIntersect(trainFlyDuck2, trainAirplane2);
-                        checkIntersect(trainFlyDuck, trainAirplane3);
-                        checkIntersect(trainFlyDuck2, trainAirplane3);
-                        checkIntersect(trainFlyDuck, trainAirplane4);
-                        checkIntersect(trainFlyDuck2, trainAirplane4);
-                        checkIntersect(trainFlyDuck, trainAirplane5);
-                        checkIntersect(trainFlyDuck2, trainAirplane5);
-                    }
-                }));
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), event -> {
+            checkIntersect(trainFlyDuck, trainAirplane);
+            checkIntersect(trainFlyDuck, trainAirplane);
+            checkIntersect(trainFlyDuck2, trainAirplane);
+            checkIntersect(trainFlyDuck, trainAirplane2);
+            checkIntersect(trainFlyDuck2, trainAirplane2);
+            checkIntersect(trainFlyDuck, trainAirplane3);
+            checkIntersect(trainFlyDuck2, trainAirplane3);
+            checkIntersect(trainFlyDuck, trainAirplane4);
+            checkIntersect(trainFlyDuck2, trainAirplane4);
+            checkIntersect(trainFlyDuck, trainAirplane5);
+            checkIntersect(trainFlyDuck2, trainAirplane5);
+        })
+        );
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
 
-    public void checkIntersect(ImageView theDuck, ImageView plane)
-    {
-        if (theDuck.getBoundsInParent().intersects(plane.getBoundsInParent()))
-        {
-            for (Node n : pane.getChildren())
-                n.setVisible(false);
-            trainingOver = new ImageView(new Image("trainingOver.jpg"));
-            trainingOver.setVisible(true);
-            trainFlyDuck.setOpacity(0);
-            trainFlyDuck2.setOpacity(0);
+    public void checkIntersect(ImageView theDuck, ImageView plane) {
+        if (theDuck != null) {
+            if (theDuck.getBoundsInParent().intersects(plane.getBoundsInParent())) {
+                trainingOver.setVisible(true);
+                trainFlyDuck.setOpacity(0);
+                trainFlyDuck2.setOpacity(0);
+            }
         }
     }
 
