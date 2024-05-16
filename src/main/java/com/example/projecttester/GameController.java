@@ -1,3 +1,13 @@
+/**
+ * The GameController class controls the behaviour of each
+ * aspect on the homeScreen page.
+ * @author Sreeja Amaresam
+ * Collaborators: Ashi Sharma, Emily Lou
+ * Teacher Name: Ms. Bailey
+ * Period: 5
+ * Due Date: 05/10/2024
+ */
+
 package com.example.projecttester;
 
 import javafx.event.ActionEvent;
@@ -23,7 +33,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-public class HelloController implements Initializable
+public class GameController implements Initializable
 {
     @FXML
     private Label welcomeText;
@@ -77,11 +87,13 @@ public class HelloController implements Initializable
 
     public void startRace1 (ActionEvent event) throws IOException
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("runScreen1.fxml"));
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(getClass().getResource("runScreen1.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         controller1 = fxmlLoader.getController();
-        controller1.setPrevScene(race1.getScene(), energyBar.getProgress(), flyBar.getProgress());
+        controller1.setPrevScene(race1.getScene(),
+                energyBar.getProgress(), flyBar.getProgress());
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -90,7 +102,8 @@ public class HelloController implements Initializable
 
     public void startTrainingFly (ActionEvent event) throws IOException
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("trainScreen1.fxml"));
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(getClass().getResource("trainScreen1.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         controller = fxmlLoader.getController();
@@ -124,7 +137,9 @@ public class HelloController implements Initializable
 
     public void mouseClick (MouseEvent event)
     {
-        displayMessage.setText("Welcome. You can buy regular lemonade or our special Panera lemonade");
+        displayMessage.setText("Welcome. You can buy regular lemonade " +
+                "or our special Panera lemonade. Make sure to drag the" +
+                " lemonade to the duck!");
         regLemonade = new Button();
         regLemonade.setLayoutX(430);
         regLemonade.setLayoutY(331);
@@ -191,14 +206,14 @@ public class HelloController implements Initializable
             @Override
             public void handle(MouseEvent mouseEvent)
             {
-                System.out.println(pane.getChildren().size() + " " + copy.size());
                 if (pane.getChildren().size() < copy.size())
                 {
 
                     List<Node> copy2 = new ArrayList<>(pane.getChildren());
                     copy.removeAll(copy2);
 
-                    if (((ImageView) (copy.toArray()[0])).getImage().getUrl().contains("panLem"))
+                    if (((ImageView)
+                            (copy.toArray()[0])).getImage().getUrl().contains("panLem"))
                         energyLevel += 3;
                     else
                         energyLevel++;
@@ -206,7 +221,6 @@ public class HelloController implements Initializable
                     copy.addAll(pane.getChildren());
                 }
                 energyBar.setProgress(energyLevel / 50.0);
-                System.out.println(energyLevel);
             }
         });
 

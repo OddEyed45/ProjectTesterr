@@ -1,3 +1,14 @@
+/**
+ * The DraggableMaker class makes the duck and
+ * lemonade objects draggable.
+ * @author Sreeja Amaresam
+ * Collaborators: Ashi Sharma, Emily Lou
+ * Teacher Name: Ms. Bailey
+ * Period: 5
+ * Due Date: 05/10/2024
+ */
+
+
 package com.example.projecttester;
 
 import javafx.event.EventHandler;
@@ -36,7 +47,8 @@ public class DraggableMaker
                 if (mouseEvent.getSceneX() - mouseAnchorX < .6 * pane.getPrefWidth() &&
                         mouseEvent.getSceneX() - mouseAnchorX > 0)
                     node.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
-                if (mouseEvent.getSceneY() + node.prefHeight(0) - mouseAnchorY < pane.getPrefHeight() &&
+                if (mouseEvent.getSceneY() + node.prefHeight(0) - mouseAnchorY <
+                        pane.getPrefHeight() &&
                         mouseEvent.getSceneY() - mouseAnchorY > 0)
                     node.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
             }
@@ -82,7 +94,8 @@ public class DraggableMaker
                 if (mouseEvent.getSceneX() - mouseAnchorX < .6 * pane.getPrefWidth() &&
                         mouseEvent.getSceneX() - mouseAnchorX > 0)
                     node1.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX);
-                if (mouseEvent.getSceneY() + node1.prefHeight(0) - mouseAnchorY < pane.getPrefHeight() &&
+                if (mouseEvent.getSceneY() +
+                        node1.prefHeight(0) - mouseAnchorY < pane.getPrefHeight() &&
                         mouseEvent.getSceneY() - mouseAnchorY > 0)
                     node1.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY);
 
@@ -99,14 +112,17 @@ public class DraggableMaker
                 if (mouseEvent.getSceneX() - mouseAnchorX2 < .6 * pane.getPrefWidth() &&
                         mouseEvent.getSceneX() - mouseAnchorX2 > 0)
                     node2.setLayoutX(mouseEvent.getSceneX() - mouseAnchorX2);
-                if (mouseEvent.getSceneY() + node2.prefHeight(0) - mouseAnchorY2 < pane.getPrefHeight() &&
+                if (mouseEvent.getSceneY() +
+                        node2.prefHeight(0) - mouseAnchorY2 < pane.getPrefHeight() &&
                         mouseEvent.getSceneY() - mouseAnchorY2 > 0)
                     node2.setLayoutY(mouseEvent.getSceneY() - mouseAnchorY2);
 
 
-                if (!(node2.getLayoutX() - (node2.prefWidth(0) * .5) < node1.getLayoutX()) &&
+                if (!(node2.getLayoutX() -
+                        (node2.prefWidth(0) * .5) < node1.getLayoutX()) &&
                         !(node2.getLayoutY() < node1.getLayoutY()) &&
-                        !(node1.getLayoutX() + (node1.prefWidth(0) * .5) < node2.getLayoutX()) &&
+                        !(node1.getLayoutX() +
+                                (node1.prefWidth(0) * .5) < node2.getLayoutX()) &&
                         !(node1.getLayoutY() + node1.prefHeight(0) < node2.getLayoutY()))
                     if (pane.getChildren().contains(node2))
                     {

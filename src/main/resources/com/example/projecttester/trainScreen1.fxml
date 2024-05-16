@@ -9,38 +9,28 @@
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
          <Image url="@../../../FINALFLYTRAINING.jpg" />
       </ImageView>
+      <Button fx:id="homeButton" layoutX="130.0" layoutY="21.0" mnemonicParsing="false" onAction="#toHome" text="Exit" />
       <ImageView fx:id="trainFlyDuck" fitHeight="54.0" fitWidth="96.0" layoutX="130.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../../../duckFlyUp.png" />
       </ImageView>
       <ImageView fx:id="trainFlyDuck2" fitHeight="54.0" fitWidth="96.0" layoutX="130.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
          <Image url="@../../../duckFlyDown.png" />
       </ImageView>
-      <Button fx:id="homeButton" layoutX="130.0" layoutY="21.0" mnemonicParsing="false" onAction="#toHome" text="Exit" />
-      <ImageView fx:id="trainAirplane" fitHeight="82.0" fitWidth="96.0" layoutX="412.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="trainAirplane" fitHeight="51.0" fitWidth="65.0" layoutX="412.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../airplane.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="trainAirplane2" fitHeight="82.0" fitWidth="96.0" layoutX="378.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="trainAirplane3" fitHeight="51.0" fitWidth="65.0" layoutX="469.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../airplane.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="trainAirplane3" fitHeight="82.0" fitWidth="96.0" layoutX="460.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="trainAirplane4" fitHeight="51.0" fitWidth="65.0" layoutX="262.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../airplane.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="trainAirplane4" fitHeight="82.0" fitWidth="96.0" layoutX="392.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../airplane.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="trainAirplane5" fitHeight="82.0" fitWidth="96.0" layoutX="474.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../airplane.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="trainingOver" fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="212.0" layoutY="21.0" prefHeight="84.0" prefWidth="148.0" text="Make sure to click on the screen to train. Press the up and down keys. If you want to exit, press X." wrapText="true" />
    </children>
 </AnchorPane>

@@ -1,3 +1,13 @@
+/**
+ * The TrainingController class controls the behaviour of each
+ * aspect on the HomeScreen page.
+ * @author Sreeja Amaresam
+ * Collaborators: Ashi Sharma, Emily Lou
+ * Teacher Name: Ms. Bailey
+ * Period: 5
+ * Due Date: 05/10/2024
+ */
+
 package com.example.projecttester;
 
 import javafx.animation.KeyFrame;
@@ -11,7 +21,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -27,9 +36,11 @@ public class TrainingController implements Initializable
     @FXML
     private AnchorPane pane;
 
+    @FXML
+    private Button homeButton;
 
+    @FXML
     private Scene homeScene;
-    private Scene thisScene;
 
     public void setPrevScene (Scene scene)
     {
@@ -40,25 +51,17 @@ public class TrainingController implements Initializable
     {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(homeScene);
-        HelloController.coinNum += 20;
+        GameController.coinNum += 20;
         stage.show();
     }
-
-
-    /*Emily's code*/
-
 
     @FXML
     private ImageView trainAirplane;
 
     @FXML
-    private ImageView trainAirplane2;
-    @FXML
     private ImageView trainAirplane3;
     @FXML
     private ImageView trainAirplane4;
-    @FXML
-    private ImageView trainAirplane5;
 
 
 
@@ -75,9 +78,11 @@ public class TrainingController implements Initializable
 
     public void animateTrainingFly()
     {
+        homeButton.setVisible(false);
         cycleAirplanes();
         makeDuckFly();
         makeDuckMoveable();
+        gameOverOnTouch();
     }
 
     public void cycleAirplanes()
@@ -87,24 +92,18 @@ public class TrainingController implements Initializable
         {
 
 
-            if (trainAirplane != null && trainAirplane2 != null && trainAirplane3 != null)
+            if (trainAirplane != null && trainAirplane4 != null && trainAirplane3 != null)
             {
                 trainAirplane.setVisible(false);
-                trainAirplane2.setVisible(false);
                 trainAirplane3.setVisible(false);
                 trainAirplane4.setVisible(false);
-                trainAirplane5.setVisible(false);
             }
             ogX = (int)(Math.random() * 300) + 800;
             moveAirplane(trainAirplane, ogX);
             ogX = (int)(Math.random() * 300) + 800;
-            moveAirplane(trainAirplane2, ogX);
-            ogX = (int)(Math.random() * 300) + 800;
             moveAirplane(trainAirplane3, ogX);
             ogX = (int)(Math.random() * 300) + 800;
             moveAirplane(trainAirplane4, ogX);
-            ogX = (int)(Math.random() * 300) + 800;
-            moveAirplane(trainAirplane5, ogX);
         }
 
 
@@ -113,8 +112,6 @@ public class TrainingController implements Initializable
 
     @FXML
     private ImageView trainingOver;
-    @FXML
-    private Button TrainAgain;
 
     public void gameOverOnTouch()
     {
@@ -132,14 +129,10 @@ public class TrainingController implements Initializable
                         checkIntersect(trainFlyDuck, trainAirplane);
                         checkIntersect(trainFlyDuck, trainAirplane);
                         checkIntersect(trainFlyDuck2, trainAirplane);
-                        checkIntersect(trainFlyDuck, trainAirplane2);
-                        checkIntersect(trainFlyDuck2, trainAirplane2);
                         checkIntersect(trainFlyDuck, trainAirplane3);
                         checkIntersect(trainFlyDuck2, trainAirplane3);
                         checkIntersect(trainFlyDuck, trainAirplane4);
                         checkIntersect(trainFlyDuck2, trainAirplane4);
-                        checkIntersect(trainFlyDuck, trainAirplane5);
-                        checkIntersect(trainFlyDuck2, trainAirplane5);
                     }
                 }));
 
@@ -151,9 +144,7 @@ public class TrainingController implements Initializable
     {
         if (theDuck.getBoundsInParent().intersects(plane.getBoundsInParent()))
         {
-            for (Node n : pane.getChildren())
-                n.setVisible(false);
-            trainingOver = new ImageView(new Image("trainingOver.jpg"));
+            trainingOver = new ImageView();
             trainingOver.setVisible(true);
             trainFlyDuck.setOpacity(0);
             trainFlyDuck2.setOpacity(0);
@@ -207,6 +198,7 @@ public class TrainingController implements Initializable
                         if (trainFlyDuck != null && trainFlyDuck2 != null) {
                             trainFlyDuck.setVisible(false);
                             trainFlyDuck2.setVisible(true);
+                            trainFlyDuck2.setFocusTraversable(true);
                         }
                     }
                 }));
@@ -221,6 +213,7 @@ public class TrainingController implements Initializable
                         if (trainFlyDuck != null && trainFlyDuck2 != null) {
                             trainFlyDuck.setVisible(true);
                             trainFlyDuck2.setVisible(false);
+                            trainFlyDuck.setFocusTraversable(true);
                         }
                     }
                 }));
@@ -246,7 +239,6 @@ public class TrainingController implements Initializable
     {
         if (trainFlyDuck != null)
         {
-            trainFlyDuck.setFocusTraversable(true);
             trainFlyDuck.setOnKeyPressed(new EventHandler<KeyEvent>()
             {
                 @Override
@@ -278,6 +270,9 @@ public class TrainingController implements Initializable
 
                             translateDown.play();
                             translateDown2.play();
+                            break;
+                        case X:
+                            homeButton.setVisible(true);
                             break;
                         default:
                             break;
